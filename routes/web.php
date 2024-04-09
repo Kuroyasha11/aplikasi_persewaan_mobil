@@ -37,3 +37,19 @@ Route::controller(\App\Http\Controllers\Mobil\MobilController::class)->middlewar
     Route::put('{mobil}', 'update')->name('update');
     Route::delete('{mobil}', 'destroy')->name('destroy');
 });
+
+/*Peminjaman*/
+Route::controller(\App\Http\Controllers\Mobil\PeminjamanController::class)->middleware('auth')->prefix('peminjaman')->name('peminjaman.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::post('{mobil}', 'store')->name('store');
+    Route::get('list-peminjaman', 'listPeminjaman')->name('listPeminjaman');
+    Route::post('list-peminjaman/post', 'pengembalianMobil')->name('listPeminjaman.pengembalianMobil');
+    Route::get('pengembalianMobil/{peminjam}', 'data')->name('data');
+    Route::post('pengembalianMobil/{peminjam}', 'selesai')->name('data.selesai');
+});
+
+/*Pengembalian*/
+Route::controller(\App\Http\Controllers\Mobil\PengembalianController::class)->middleware('auth')->prefix('pengembalian')->name('pengembalian.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('{pengembalian}', 'show')->name('show');
+});

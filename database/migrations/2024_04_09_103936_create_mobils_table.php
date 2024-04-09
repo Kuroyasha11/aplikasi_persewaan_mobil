@@ -14,9 +14,8 @@ return new class extends Migration {
             $table->uuid('id')->primary();
             $table->string('merek');
             $table->string('model');
-            $table->string('nomor_plat');
+            $table->string('nomor_plat')->unique();
             $table->integer('tarif');
-            $table->boolean('status')->default(1);
             $table->softDeletes();
             $table->timestamps();
         });

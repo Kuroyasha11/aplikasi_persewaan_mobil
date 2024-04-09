@@ -26,29 +26,15 @@ class MobilController extends Controller
             ->withQueryString();
 
         if ($request->search) {
-            $search = strtolower($request->search);
-            if ($search == 'tersedia') {
-                $mobil = DB::table('mobils')
-                    ->where('status', true)
-                    ->whereNull('deleted_at')
-                    ->paginate(20)
-                    ->withQueryString();
-            } elseif ($search == 'tidak tersedia') {
-                $mobil = DB::table('mobils')
-                    ->where('status', false)
-                    ->whereNull('deleted_at')
-                    ->paginate(20)
-                    ->withQueryString();
-            } else {
-                $mobil = DB::table('mobils')
-                    ->whereAny([
-                        'merek',
-                        'model',
-                    ], 'LIKE', $search)
-                    ->whereNull('deleted_at')
-                    ->paginate(20)
-                    ->withQueryString();
-            }
+            $mobil = DB::table('mobils')
+                ->whereAny([
+                    'merek',
+                    'model',
+                ], 'LIKE', $request->search)
+                ->whereNull('deleted_at')
+                ->paginate(20)
+                ->withQueryString();
+
         }
 
         return view('mobil.index', compact('title', 'breadcrumb', 'mobil'));
@@ -77,7 +63,7 @@ class MobilController extends Controller
         $rule = [
             'merek' => 'required',
             'model' => 'required',
-            'nomor_plat' => 'required',
+            'nomor_plat' => 'required|unique:mobils',
             'tarif' => 'required|numeric|min:0',
         ];
 
@@ -125,9 +111,12 @@ class MobilController extends Controller
         $rule = [
             'merek' => 'required',
             'model' => 'required',
-            'nomor_plat' => 'required',
             'tarif' => 'required|numeric|min:0',
         ];
+
+        if ($mobil->nomor_plat !== $request->nomor_plat) {
+            $rule['nomor_plat'] = 'required|unique:mobils';
+        }
 
         $validatedData = $request->validate($rule);
 
@@ -135,7 +124,7 @@ class MobilController extends Controller
         try {
             $mobil->merek = $validatedData['merek'];
             $mobil->model = $validatedData['model'];
-            $mobil->nomor_plat = $validatedData['nomor_plat'];
+            $mobil->nomor_plat = $request->nomor_plat;
             $mobil->tarif = $validatedData['tarif'];
             $mobil->save();
 

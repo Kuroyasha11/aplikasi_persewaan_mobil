@@ -43,6 +43,9 @@
     <!-- Page Content  -->
     <div id="content-page" class="content-page">
         <x-breadcrumb :breadcrumb="$breadcrumb ?? []"/>
+        @if($errors->any())
+            <x-error-alert :$errors/>
+        @endif
         @if (Session::has('success'))
             <x-success-alert>{{session('success')}}</x-success-alert>
         @endif

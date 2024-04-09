@@ -33,11 +33,11 @@
                             class="las la-car iq-arrow-left"></i><span>Mobil</span><i
                             class="ri-arrow-right-s-line iq-arrow-right"></i></a>
                     <ul id="userinfo" class="iq-submenu collapse" data-parent="#iq-sidebar-toggle" style="">
-                        <li class="{{Request::is('mobil*') ? 'active' : ''}}"><a href="/roles"><i
+                        <li class="{{Request::is('mobil*') ? 'active' : ''}}"><a href="/mobil"><i
                                     class="las la-car"></i>Daftar Mobil</a></li>
-                        <li class="{{Request::is('peminjaman*') ? 'active' : ''}}"><a href="/permissions"><i
+                        <li class="{{Request::is('peminjaman*') ? 'active' : ''}}"><a href="/peminjaman"><i
                                     class="las la-list"></i>Daftar Peminjaman</a></li>
-                        <li class="{{Request::is('pengembalian*') ? 'active' : ''}}"><a href="/users"><i
+                        <li class="{{Request::is('pengembalian*') ? 'active' : ''}}"><a href="/pengembalian"><i
                                     class="las la-list-alt"></i>Daftar Pengembalian</a></li>
                     </ul>
                 </li>
