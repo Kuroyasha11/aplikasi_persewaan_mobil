@@ -35,17 +35,17 @@ class RegisterController extends Controller
             'nomor_sim' => 'nullable|digits:14|numeric',
         ];
 
-        $validateddata = $request->validate($rule);
+        $validatedData = $request->validate($rule);
 
         DB::beginTransaction();
         try {
             $user = new User;
-            $user->name = $validateddata['name'];
-            $user->email = $validateddata['email'];
-            $user->password = Bcrypt($validateddata['password']);
-            $user->alamat = $validateddata['alamat'];
-            $user->nomor_telepon = $validateddata['nomor_telepon'];
-            $user->nomor_sim = $validateddata['nomor_sim'];
+            $user->name = $validatedData['name'];
+            $user->email = $validatedData['email'];
+            $user->password = Bcrypt($validatedData['password']);
+            $user->alamat = $validatedData['alamat'];
+            $user->nomor_telepon = $validatedData['nomor_telepon'];
+            $user->nomor_sim = $validatedData['nomor_sim'];
             $user->save();
 
             DB::commit();
@@ -56,6 +56,5 @@ class RegisterController extends Controller
 
             return back()->withErrors([$th->getMessage()]);
         }
-
     }
 }

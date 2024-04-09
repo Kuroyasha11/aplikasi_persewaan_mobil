@@ -27,3 +27,13 @@ Route::controller(\App\Http\Controllers\Auth\RegisterController::class)->group(f
         Route::post('register', 'postRegister')->name('postRegister');
     });
 });
+
+/*Mobil*/
+Route::controller(\App\Http\Controllers\Mobil\MobilController::class)->middleware('auth')->prefix('mobil')->name('mobil.')->group(function () {
+    Route::get('/', 'index')->name('index');
+    Route::get('create', 'create')->name('create');
+    Route::post('store', 'store')->name('store');
+    Route::get('{mobil}/edit', 'edit')->name('edit');
+    Route::put('{mobil}', 'update')->name('update');
+    Route::delete('{mobil}', 'destroy')->name('destroy');
+});

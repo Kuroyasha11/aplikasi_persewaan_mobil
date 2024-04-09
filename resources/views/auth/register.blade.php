@@ -12,32 +12,38 @@
                 @csrf
                 <div class="form-group">
                     <x-label-form for="name" :required="true">Nama Lengkap</x-label-form>
-                    <x-input-form type="text" class="mb-0" name="name" placeholder="Masukkan nama lengkap"/>
+                    <x-input-form type="text" class="mb-0" name="name" placeholder="Masukkan nama lengkap"
+                                  :hasError="$errors->has('name')"/>
                 </div>
                 <div class="form-group">
                     <x-label-form for="alamat">Alamat</x-label-form>
-                    <x-input-form type="text" class="mb-0" name="alamat" placeholder="Masukkan alamat"/>
+                    <x-input-form type="text" class="mb-0" name="alamat" placeholder="Masukkan alamat"
+                                  :hasError="$errors->has('alamat')"/>
                 </div>
                 <div class="form-group">
                     <x-label-form for="nomor_telepon">Nomor Telepon</x-label-form>
-                    <x-input-form type="number" class="mb-0" name="nomor_telepon" placeholder="Masukkan nomor telepon"/>
+                    <x-input-form type="number" class="mb-0" name="nomor_telepon" placeholder="Masukkan nomor telepon"
+                                  :hasError="$errors->has('nomor_telepon')"/>
                 </div>
                 <div class="form-group">
                     <x-label-form for="nomor_sim">Nomor SIM</x-label-form>
-                    <x-input-form type="number" class="mb-0" name="nomor_sim" placeholder="Masukkan nomor sim"/>
+                    <x-input-form type="number" class="mb-0" name="nomor_sim" placeholder="Masukkan nomor sim"
+                                  :hasError="$errors->has('nomor_sim')"/>
                 </div>
                 <div class="form-group">
                     <x-label-form for="email" :required="true">Email</x-label-form>
-                    <x-input-form type="email" class="mb-0" name="email" placeholder="Masukkan email"/>
+                    <x-input-form type="email" class="mb-0" name="email" placeholder="Masukkan email"
+                                  :hasError="$errors->has('email')"/>
                 </div>
                 <div class="form-group">
                     <x-label-form for="password" :required="true">Password</x-label-form>
-                    <x-input-form type="password" class="mb-0" name="password" placeholder="Password"/>
+                    <x-input-form type="password" class="mb-0" name="password" placeholder="Password"
+                                  :hasError="$errors->has('password')"/>
                 </div>
                 <div class="form-group">
                     <x-label-form for="password_confirmation" :required="true">Konfirmasi Password</x-label-form>
                     <x-input-form type="password" class="mb-0" name="password_confirmation"
-                                  placeholder="Konfirmasi Password"/>
+                                  placeholder="Konfirmasi Password" :hasError="$errors->has('password_confirmation')"/>
                 </div>
                 <div class="sign-info text-center">
                     <button type="submit" class="btn btn-primary d-block w-100 mb-2">Daftar</button>
